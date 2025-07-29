@@ -76,15 +76,18 @@ npm run start:prod
 # http://localhost:3000/dist/
 ```
 
-Deployment (edit "homepage" in `package.json` to match your deployment root!):
+Deployment (edit `homepage` in `package.json` to match your deployment root!) is
+handled automatically via GitHub Actions. Pushing to the `main` branch triggers
+the [`deploy.yml`](.github/workflows/deploy.yml) workflow that builds the project
+and publishes the contents of the `dist` directory to GitHub Pages.
+
+If you prefer deploying manually you can still run:
 
 ```bash
 make public
 npm install
 NODE_ENV=production npm run build
-
-rm -fR ../ochafik.github.io/openscad2 && cp -R dist ../ochafik.github.io/openscad2 
-# Now commit and push changes, wait for site update and enjoy!
+cp -R dist /path/to/your/pages/repo
 ```
 
 ## Build your own WASM binary
